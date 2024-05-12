@@ -31,19 +31,8 @@ func MergeTwoArrays(firstArray, secondArray []*model.Grade) []*model.Grade {
 		currentOfMerged++
 	}
 
-	for currentOfFirstArray < len(firstArray) {
-		fmt.Println("-> Inserting", firstArray[currentOfFirstArray].GetStudentName(), "(", firstArray[currentOfFirstArray].GetResult(), ") on the position", currentOfMerged, "because it is left over from the first array")
-		merged[currentOfMerged] = firstArray[currentOfFirstArray]
-		currentOfFirstArray++
-		currentOfMerged++
-	}
-
-	for currentOfSecondArray < len(secondArray) {
-		fmt.Println("-> Inserting", secondArray[currentOfSecondArray].GetStudentName(), "(", secondArray[currentOfSecondArray].GetResult(), ") on the position", currentOfMerged, "because it is left over from the second array")
-		merged[currentOfMerged] = secondArray[currentOfSecondArray]
-		currentOfSecondArray++
-		currentOfMerged++
-	}
+	currentOfMerged = addRemainingElementsToEndOfArray(firstArray, len(firstArray), currentOfFirstArray, merged, currentOfMerged)
+	addRemainingElementsToEndOfArray(secondArray, len(secondArray), currentOfSecondArray, merged, currentOfMerged)
 
 	return merged
 }
@@ -71,27 +60,29 @@ func SortOneArray(array []*model.Grade, start, middle, end int) []*model.Grade {
 		sortedIndex++
 	}
 
-	for firstPartIndex < middle {
-		fmt.Println("-> Inserting", array[firstPartIndex].GetStudentName(), "(", array[firstPartIndex].GetResult(), ") on the position", sortedIndex, "because it is left over from the first part of the array")
-		sorted[sortedIndex] = array[firstPartIndex]
-		firstPartIndex++
-		sortedIndex++
-	}
-
-	for secondPartIndex < end {
-		fmt.Println("-> Inserting", array[secondPartIndex].GetStudentName(), "(", array[secondPartIndex].GetResult(), ") on the position", sortedIndex, "because it is left over from the second part of the array")
-		sorted[sortedIndex] = array[secondPartIndex]
-		secondPartIndex++
-		sortedIndex++
-	}
-
-	if start > 0 {
-		fmt.Println("Rebuilding the original array keeping the initial object(s) not ordered (because the start is greater than 0)")
-		for indexOfMerged := 0; indexOfMerged < sortedIndex; indexOfMerged++ {
-			fmt.Println("-> Inserting", sorted[indexOfMerged].GetStudentName(), "(", sorted[indexOfMerged].GetResult(), ") on the position", start+indexOfMerged)
-			array[start+indexOfMerged] = sorted[indexOfMerged]
-		}
+	sortedIndex = addRemainingElementsToEndOfArray(array, middle, firstPartIndex, sorted, sortedIndex)
+	addRemainingElementsToEndOfArray(array, end, secondPartIndex, sorted, sortedIndex)
+	if start+end < len(array) {
+		rebuildArray(array, start, sortedIndex, sorted)
 	}
 
 	return array
+}
+
+func addRemainingElementsToEndOfArray(array []*model.Grade, arrayEnd, arrayIndex int, merged []*model.Grade, mergedArrayIndex int) int {
+	for arrayIndex < arrayEnd {
+		fmt.Println("-> Inserting", array[arrayIndex].GetStudentName(), "(", array[arrayIndex].GetResult(), ") on the position", mergedArrayIndex, "because it is left over from the first array")
+		merged[mergedArrayIndex] = array[arrayIndex]
+		arrayIndex++
+		mergedArrayIndex++
+	}
+	return mergedArrayIndex
+}
+
+func rebuildArray(array []*model.Grade, start, sortedIndex int, sorted []*model.Grade) {
+	fmt.Println("Rebuilding the original array")
+	for indexOfMerged := 0; indexOfMerged < sortedIndex; indexOfMerged++ {
+		fmt.Println("-> Inserting", sorted[indexOfMerged].GetStudentName(), "(", sorted[indexOfMerged].GetResult(), ") on the position", start+indexOfMerged)
+		array[start+indexOfMerged] = sorted[indexOfMerged]
+	}
 }
