@@ -1,11 +1,13 @@
 package main
 
-import "src/tech/aelson/m/v2/tech/aelson/algorithms/sort/merge_sort"
+import (
+	"src/tech/aelson/m/v2/tech/aelson/algorithms/search/find_smallest"
+)
 
 func main() {
-	// search.TestSmallestPrice()
+	find_smallest.TestSmallestPrice()
 	//selection_sort.SelectionSortTester()
 	//insertion_sort.InsertionSortTester()
 	//merge_sort.MergeSortTwoArraysTester()
-	merge_sort.MergeSortOneArrayTester()
+	//merge_sort.MergeSortOneArrayTester()
 }

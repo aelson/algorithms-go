@@ -1,4 +1,4 @@
-package search
+package find_smallest
 
 import "src/tech/aelson/m/v2/tech/aelson/algorithms/model"
 

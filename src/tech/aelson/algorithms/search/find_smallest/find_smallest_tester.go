@@ -1,4 +1,4 @@
-package search
+package find_smallest
 
 import (
 	"fmt"
