@@ -1,11 +1,11 @@
-package pivot
+package quick_sort
 
 import (
-	"fmt"
 	"src/tech/aelson/m/v2/tech/aelson/algorithms/model"
+	"src/tech/aelson/m/v2/tech/aelson/algorithms/util"
 )
 
-func PivotTester() {
+func QuickSortTester() {
 	guilherme := model.NewGrade("guilherme", 7)
 	unsortedGrades := []*model.Grade{
 		{StudentName: "andre", Result: 4},
@@ -19,9 +19,6 @@ func PivotTester() {
 		guilherme,
 	}
 
-	pivotPosition := Pivot(unsortedGrades, len(unsortedGrades))
-	fmt.Println("The Pivot is in the position", pivotPosition)
-	for _, grade := range unsortedGrades {
-		fmt.Println(grade.GetStudentName(), grade.GetResult())
-	}
+	QuickSort(unsortedGrades, 0, len(unsortedGrades))
+	util.PrintGradesArray("Sorted array: ", unsortedGrades)
 }
