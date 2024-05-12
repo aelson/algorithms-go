@@ -1,8 +1,6 @@
 package main
 
-import (
-	"src/tech/aelson/m/v2/tech/aelson/algorithms/search/find_smaller_elements"
-)
+import "src/tech/aelson/m/v2/tech/aelson/algorithms/search/pivot"
 
 func main() {
 	//find_smallest.TestSmallestPrice()
@@ -10,5 +8,6 @@ func main() {
 	//insertion_sort.InsertionSortTester()
 	//merge_sort.MergeSortTwoArraysTester()
 	//merge_sort.MergeSortOneArrayTester()
-	find_smaller_elements.FindSmallerElementsTester()
+	//find_smaller_elements.FindSmallerElementsTester()
+	pivot.PivotTester()
 }
