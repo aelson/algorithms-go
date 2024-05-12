@@ -5,6 +5,16 @@ import (
 	"src/tech/aelson/m/v2/tech/aelson/algorithms/model"
 )
 
+func MergeSort(grades []*model.Grade, start, end int) {
+	numberOfElements := end - start
+	if numberOfElements > 1 {
+		middle := (start + end) / 2
+		MergeSort(grades, start, middle)
+		MergeSort(grades, middle, end)
+		SortOneArrayWithTwoOrderedHalfs(grades, start, middle, end)
+	}
+}
+
 func MergeTwoArrays(firstArray, secondArray []*model.Grade) []*model.Grade {
 	total := len(firstArray) + len(secondArray)
 	merged := make([]*model.Grade, total)
@@ -37,7 +47,7 @@ func MergeTwoArrays(firstArray, secondArray []*model.Grade) []*model.Grade {
 	return merged
 }
 
-func SortOneArray(array []*model.Grade, start, middle, end int) []*model.Grade {
+func SortOneArrayWithTwoOrderedHalfs(array []*model.Grade, start, middle, end int) []*model.Grade {
 	total := len(array)
 	sorted := make([]*model.Grade, total-start)
 	sortedIndex := 0
@@ -62,9 +72,7 @@ func SortOneArray(array []*model.Grade, start, middle, end int) []*model.Grade {
 
 	sortedIndex = addRemainingElementsToEndOfArray(array, middle, firstPartIndex, sorted, sortedIndex)
 	addRemainingElementsToEndOfArray(array, end, secondPartIndex, sorted, sortedIndex)
-	if start+end < len(array) {
-		rebuildArray(array, start, sortedIndex, sorted)
-	}
+	rebuildArray(array, start, sortedIndex, sorted)
 
 	return array
 }
