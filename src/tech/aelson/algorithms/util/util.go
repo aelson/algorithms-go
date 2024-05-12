@@ -19,10 +19,17 @@ func Swap(products []*model.Product, first, second int) {
 	fmt.Println("------------------------------------")
 }
 
-func PrintArray(arrayTitle string, products []*model.Product) {
+func PrintProductsArray(arrayTitle string, products []*model.Product) {
 	fmt.Println(arrayTitle)
 	for _, product := range products {
 		fmt.Println(product.GetName(), "costs", product.GetPrice())
+	}
+}
+
+func PrintGradesArray(arrayTitle string, grades []*model.Grade) {
+	fmt.Println(arrayTitle)
+	for _, grade := range grades {
+		fmt.Println(grade.GetStudentName(), grade.GetResult())
 	}
 }
 

@@ -6,8 +6,8 @@ import (
 
 func SelectionSortTester() {
 	products := util.GetUnsortedProducts()
-	util.PrintArray("Original array: ", products)
+	util.PrintProductsArray("Original array: ", products)
 
 	SelectionSort(products, len(products))
-	util.PrintArray("Sorted array: ", products)
+	util.PrintProductsArray("Sorted array: ", products)
 }
