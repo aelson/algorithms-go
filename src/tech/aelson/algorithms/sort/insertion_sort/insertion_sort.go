@@ -11,7 +11,7 @@ func InsertionSort(products []*model.Product, numberOfElements int) {
 		fmt.Println("I am in the element", current)
 		elementBeingAnalysed := current
 		for elementBeingAnalysed > 0 && products[elementBeingAnalysed].GetPrice() < products[elementBeingAnalysed-1].GetPrice() {
-			util.Swap(products, elementBeingAnalysed, elementBeingAnalysed-1)
+			util.SwapProduct(products, elementBeingAnalysed, elementBeingAnalysed-1)
 			elementBeingAnalysed--
 		}
 	}

@@ -13,6 +13,6 @@ func SelectionSort(products []*model.Product, numberOfElements int) {
 
 		smallest := find_smallest.FindSmallest(products, current, len(products)-1)
 
-		util.Swap(products, current, smallest)
+		util.SwapProduct(products, current, smallest)
 	}
 }

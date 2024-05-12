@@ -1,24 +1,20 @@
 package pivot
 
-import "src/tech/aelson/m/v2/tech/aelson/algorithms/model"
+import (
+	"src/tech/aelson/m/v2/tech/aelson/algorithms/model"
+	"src/tech/aelson/m/v2/tech/aelson/algorithms/util"
+)
 
 func Pivot(grades []*model.Grade, end int) int {
 	pivot := grades[end-1]
 	lowerValuesCount := 0
 	for index := 0; index < end-1; index++ {
 		current := grades[index]
-		if current.GetResult() <= pivot.GetResult() {
-			swap(grades, index, lowerValuesCount)
+		if current.GetResult() < pivot.GetResult() {
+			util.SwapGrade(grades, index, lowerValuesCount)
 			lowerValuesCount++
 		}
 	}
-	swap(grades, end-1, lowerValuesCount)
+	util.SwapGrade(grades, end-1, lowerValuesCount)
 	return lowerValuesCount
-}
-
-func swap(grades []*model.Grade, from, to int) {
-	grade1 := grades[from]
-	grade2 := grades[to]
-	grades[to] = grade1
-	grades[from] = grade2
 }
